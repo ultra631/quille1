@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quilles Le Domaine — Bowl. Chill. Repeat.</title>
+<meta name="description" content="Le salon de quilles le plus hot de Montréal-Est. 16 allées, vibes, parties parfaites. Pogne tes amis, ça joue ici.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg-2: #12121a;
+    --bg-3: #1a1a24;
+    --ink: #fafafa;
+    --ink-dim: #a1a1b3;
+    --ink-muted: #5c5c6e;
+    --neon-red: #ff2e4c;
+    --neon-red-glow: rgba(255, 46, 76, 0.5);
+    --neon-yellow: #ffee00;
+    --neon-pink: #ff006e;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1rem 2rem;
+    background: rgba(10, 10, 15, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    max-width: 1400px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+    text-decoration: none; color: var(--ink);
+  }
+
+  .nav-logo img {
+    height: 40px; width: auto;
+    filter: drop-shadow(0 0 10px rgba(255,46,76,0.3));
+  }
+
+  .nav-logo-text {
+    font-weight: 800; font-size: 1rem;
+    letter-spacing: -0.02em; line-height: 1;
+  }
+
+  .nav-logo-text small {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400; font-size: 0.65rem;
+    color: var(--neon-red); letter-spacing: 2px;
+    margin-top: 2px; text-transform: uppercase;
+  }
+
+  .nav-links { display: flex; gap: 0.5rem; list-style: none; }
+
+  .nav-links a {
+    color: var(--ink-dim); text-decoration: none;
+    font-weight: 500; font-size: 0.9rem;
+    padding: 0.5rem 1rem; border-radius: 100px;
+    transition: all 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); background: var(--bg-3); }
+
+  .nav-cta {
+    background: var(--neon-red); color: var(--ink);
+    padding: 0.6rem 1.4rem; border-radius: 100px;
+    text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    transition: all 0.2s;
+    box-shadow: 0 0 20px var(--neon-red-glow);
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 0 30px var(--neon-red-glow); }
+
+  .nav-mobile-btn {
+    display: none; background: none; border: none;
+    color: var(--ink); font-size: 1.5rem; cursor: pointer; padding: 0.5rem;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 2rem 60px;
+    position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; top: 20%; left: -10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, var(--neon-red) 0%, transparent 60%);
+    opacity: 0.3; filter: blur(80px);
+    animation: float1 15s ease-in-out infinite;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute; bottom: 10%; right: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, var(--neon-yellow) 0%, transparent 60%);
+    opacity: 0.15; filter: blur(100px);
+    animation: float2 18s ease-in-out infinite;
+  }
+
+  @keyframes float1 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(60px, -40px); }
+  }
+
+  @keyframes float2 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-50px, 30px); }
+  }
+
+  .hero-inner {
+    max-width: 1400px; width: 100%; margin: 0 auto;
+    position: relative; z-index: 2;
+  }
+
+  .status-bar {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    padding: 0.4rem 1rem;
+    background: var(--bg-2);
+    border: 1px solid var(--border-strong);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; color: var(--ink-dim);
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    animation: fadeInDown 0.6s ease-out;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #00ff88;
+    box-shadow: 0 0 10px #00ff88;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero h1 {
+    font-weight: 800;
+    font-size: clamp(3.5rem, 12vw, 10rem);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease-out 0.1s both;
+  }
+
+  .hero h1 .line-1 { display: block; }
+
+  .hero h1 .line-2 {
+    display: block;
+    color: var(--neon-red);
+    font-style: italic;
+    text-shadow: 0 0 40px var(--neon-red-glow);
+  }
+
+  .hero h1 .line-3 {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.35em;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--ink-muted);
+    letter-spacing: 0;
+    margin-top: 1rem;
+    text-transform: none;
+  }
+
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: end;
+    margin-top: 3rem;
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+  }
+
+  .hero-text {
+    max-width: 480px;
+    font-size: 1.15rem;
+    color: var(--ink-dim);
+    line-height: 1.5;
+  }
+
+  .hero-text strong { color: var(--ink); font-weight: 600; }
+
+  .hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+
+  .btn {
+    padding: 1rem 1.8rem; border-radius: 100px;
+    text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    cursor: pointer; border: none; font-family: inherit;
+  }
+
+  .btn-neon {
+    background: var(--neon-red); color: var(--ink);
+    box-shadow: 0 0 30px var(--neon-red-glow);
+  }
+
+  .btn-neon:hover { transform: translateY(-3px); box-shadow: 0 0 45px var(--neon-red-glow); }
+
+  .btn-ghost {
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--border-strong);
+  }
+
+  .btn-ghost:hover { background: var(--bg-3); border-color: var(--ink); }
+
+  /* TICKER */
+  .ticker {
+    overflow: hidden;
+    padding: 1.2rem 0;
+    background: var(--neon-red);
+    color: var(--bg);
+    font-weight: 800; font-size: 1.8rem;
+    letter-spacing: -0.02em;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative; z-index: 2;
+    transform: rotate(-1deg);
+    margin: 4rem -2rem 0;
+  }
+
+  .ticker-track {
+    display: inline-flex; gap: 3rem;
+    white-space: nowrap;
+    animation: scroll 25s linear infinite;
+    padding-right: 3rem;
+  }
+
+  .ticker-item { display: inline-flex; align-items: center; gap: 3rem; }
+
+  .ticker-dot {
+    width: 12px; height: 12px;
+    background: var(--bg); border-radius: 50%; flex-shrink: 0;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* STATS */
+  .stats-section {
+    padding: 6rem 2rem;
+    position: relative; z-index: 2;
+  }
+
+  .stats-grid {
+    max-width: 1400px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+
+  .stat-cell {
+    background: var(--bg); padding: 3rem 2rem;
+    transition: background 0.3s;
+    position: relative; overflow: hidden;
+  }
+
+  .stat-cell:hover { background: var(--bg-2); }
+
+  .stat-cell:hover .stat-num {
+    color: var(--neon-red);
+    text-shadow: 0 0 30px var(--neon-red-glow);
+  }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; color: var(--ink-muted);
+    text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 1rem;
+  }
+
+  .stat-num {
+    font-weight: 800;
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1; letter-spacing: -0.04em;
+    transition: all 0.3s;
+  }
+
+  .stat-caption {
+    margin-top: 0.5rem; font-size: 0.9rem; color: var(--ink-dim);
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 6rem 2rem;
+    max-width: 1400px; margin: 0 auto;
+    position: relative; z-index: 2;
+  }
+
+  .section-top {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 4rem; gap: 2rem; flex-wrap: wrap;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem; color: var(--neon-red);
+    letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .section-label::before {
+    content: ''; width: 30px; height: 1px; background: var(--neon-red);
+  }
+
+  .section-title {
+    font-weight: 800;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 0.9; letter-spacing: -0.04em;
+    max-width: 800px;
+  }
+
+  .section-title em { color: var(--neon-red); font-style: italic; }
+
+  .section-description {
+    max-width: 400px; color: var(--ink-dim);
+    font-size: 1rem; line-height: 1.6;
+  }
+
+  /* PARFAITES */
+  #parfaites {
+    background: var(--bg-2);
+    padding: 6rem 2rem;
+    position: relative; z-index: 2;
+  }
+
+  #parfaites-inner { max-width: 1400px; margin: 0 auto; }
+
+  .hof-banner {
+    background: linear-gradient(135deg, var(--neon-red) 0%, var(--neon-pink) 100%);
+    padding: 3rem; border-radius: 24px;
+    margin-bottom: 3rem;
+    display: grid; grid-template-columns: 1fr auto; gap: 2rem;
+    align-items: center;
+    position: relative; overflow: hidden;
+  }
+
+  .hof-banner::before {
+    content: '300';
+    position: absolute; right: -20px; top: -40px;
+    font-weight: 800; font-size: 20rem;
+    line-height: 1; color: rgba(0,0,0,0.1);
+    pointer-events: none;
+  }
+
+  .hof-banner h3 {
+    font-weight: 800;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    line-height: 1; letter-spacing: -0.02em;
+    margin-bottom: 0.8rem;
+    position: relative; z-index: 2;
+  }
+
+  .hof-banner p {
+    max-width: 600px; font-size: 1rem;
+    position: relative; z-index: 2;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .hof-count { position: relative; z-index: 2; text-align: right; }
+
+  .hof-count-num {
+    font-weight: 800; font-size: 5rem;
+    line-height: 0.9; letter-spacing: -0.04em;
+  }
+
+  .hof-count-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 2px;
+    text-transform: uppercase; opacity: 0.8;
+  }
+
+  .parfaites-controls {
+    display: flex; gap: 1rem;
+    margin-bottom: 1.5rem; flex-wrap: wrap; align-items: center;
+  }
+
+  .search-wrap { flex: 1; min-width: 250px; position: relative; }
+
+  .search-wrap::before {
+    content: '⌕';
+    position: absolute; left: 1.2rem; top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink-muted); font-size: 1.2rem;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    color: var(--ink); border-radius: 100px;
+    font-family: inherit; font-size: 0.95rem;
+    transition: border-color 0.2s;
+  }
+
+  .search-input::placeholder { color: var(--ink-muted); }
+
+  .search-input:focus {
+    outline: none; border-color: var(--neon-red); background: var(--bg);
+  }
+
+  .count-badge {
+    padding: 1rem 1.5rem;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem; color: var(--ink-dim);
+    letter-spacing: 1px;
+  }
+
+  .count-badge strong {
+    color: var(--neon-red); font-weight: 600; margin-right: 0.3rem;
+  }
+
+  .parfaites-list {
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: 24px; overflow: hidden;
+  }
+
+  .parfaites-header {
+    display: grid;
+    grid-template-columns: 60px 1fr 100px 1fr 140px;
+    gap: 1rem; padding: 1rem 1.5rem;
+    background: var(--bg);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; color: var(--ink-muted);
+    letter-spacing: 2px; text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .parfaites-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 100px 1fr 140px;
+    gap: 1rem; padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    align-items: center; transition: background 0.15s;
+  }
+
+  .parfaites-row:hover { background: var(--bg-2); }
+  .parfaites-row:last-child { border-bottom: none; }
+
+  .parfaites-rank {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink-muted); font-size: 0.85rem;
+  }
+
+  .parfaites-row.top .parfaites-rank {
+    color: var(--neon-yellow); font-weight: 600;
+  }
+
+  .parfaites-name { font-weight: 600; font-size: 1.05rem; }
+
+  .parfaites-score {
+    font-weight: 800; font-size: 1.1rem;
+    color: var(--neon-red); letter-spacing: -0.02em;
+  }
+
+  .parfaites-ligue { color: var(--ink-dim); font-size: 0.9rem; }
+
+  .parfaites-date {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink-muted); font-size: 0.85rem;
+  }
+
+  .parfaites-empty {
+    padding: 4rem 2rem; text-align: center; color: var(--ink-muted);
+  }
+
+  .parfaites-empty-icon {
+    font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;
+  }
+
+  .add-btn {
+    margin-top: 2rem; width: 100%;
+    padding: 1.5rem;
+    background: transparent;
+    border: 1.5px dashed var(--border-strong);
+    color: var(--ink-dim); border-radius: 16px;
+    font-family: inherit; font-size: 0.95rem;
+    font-weight: 500; cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .add-btn:hover {
+    border-color: var(--neon-red);
+    color: var(--neon-red);
+    background: rgba(255, 46, 76, 0.05);
+  }
+
+  /* LIGUES */
+  .ligues-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .ligue-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    padding: 2rem; border-radius: 20px;
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+
+  .ligue-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 0% 0%, rgba(255,46,76,0.15), transparent 50%);
+    opacity: 0; transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .ligue-card:hover { border-color: var(--neon-red); transform: translateY(-4px); }
+  .ligue-card:hover::before { opacity: 1; }
+
+  .ligue-day {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; color: var(--neon-red);
+    letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .ligue-title {
+    font-weight: 800; font-size: 1.8rem;
+    line-height: 1; letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .ligue-meta {
+    display: flex; justify-content: space-between;
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+
+  .ligue-meta span:first-child {
+    color: var(--ink-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  .ligue-meta span:last-child { color: var(--ink); font-weight: 500; }
+
+  /* TARIFS */
+  .tarifs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .tarif-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 24px; padding: 2.5rem;
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+
+  .tarif-card:hover { transform: translateY(-6px); border-color: var(--border-strong); }
+
+  .tarif-card.hot {
+    background: linear-gradient(135deg, var(--neon-red) 0%, var(--neon-pink) 100%);
+    border: none;
+  }
+
+  .tarif-card.hot .tarif-emoji { background: rgba(255,255,255,0.15); }
+  .tarif-card.hot .tarif-name,
+  .tarif-card.hot .tarif-price,
+  .tarif-card.hot .tarif-desc { color: var(--ink); }
+  .tarif-card.hot .tarif-note { color: rgba(255,255,255,0.9); }
+  .tarif-card.hot .tarif-price small { color: rgba(255,255,255,0.7); }
+
+  .tarif-badge {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: var(--neon-yellow); color: var(--bg);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem; font-weight: 600;
+    padding: 0.3rem 0.7rem; border-radius: 100px;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  .tarif-emoji {
+    width: 60px; height: 60px;
+    background: var(--bg-3); border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; margin-bottom: 1.5rem;
+  }
+
+  .tarif-name {
+    font-weight: 800; font-size: 1.5rem;
+    letter-spacing: -0.02em; margin-bottom: 0.5rem;
+  }
+
+  .tarif-desc {
+    color: var(--ink-dim); font-size: 0.95rem;
+    margin-bottom: 1.5rem; line-height: 1.5;
+    min-height: 2.8em;
+  }
+
+  .tarif-price {
+    font-weight: 800; font-size: 2.5rem;
+    line-height: 1; letter-spacing: -0.04em;
+    margin-bottom: 0.5rem;
+  }
+
+  .tarif-price small {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem; font-weight: 400;
+    color: var(--ink-muted); letter-spacing: 1px;
+  }
+
+  .tarif-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; color: var(--neon-red);
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-top: 1rem;
+  }
+
+  .prix-info {
+    margin-top: 2rem;
+    padding: 1.5rem 2rem;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    font-size: 0.9rem; color: var(--ink-dim);
+    text-align: center;
+  }
+
+  .prix-info strong { color: var(--neon-red); }
+
+  /* CONTACT */
+  #contact {
+    background: var(--bg-2);
+    padding: 6rem 2rem 4rem;
+    position: relative; z-index: 2;
+  }
+
+  #contact-inner { max-width: 1400px; margin: 0 auto; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .contact-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 24px; padding: 2.5rem;
+  }
+
+  .contact-item {
+    display: flex; gap: 1.2rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+
+  .contact-item:first-child { padding-top: 0; }
+  .contact-item:last-child { padding-bottom: 0; border-bottom: none; }
+
+  .contact-icon-wrap {
+    width: 44px; height: 44px;
+    background: var(--bg-3); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+
+  .contact-detail { flex: 1; }
+
+  .contact-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; color: var(--ink-muted);
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .contact-value {
+    color: var(--ink); font-size: 1rem;
+    font-weight: 500; line-height: 1.4;
+  }
+
+  .contact-value a {
+    color: var(--ink); text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-value a:hover { color: var(--neon-red); }
+
+  .contact-value small { color: var(--ink-muted); font-weight: 400; }
+
+  .horaires-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 24px; padding: 2.5rem;
+  }
+
+  .horaires-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 2rem; padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .horaires-title {
+    font-weight: 800; font-size: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .horaires-status {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(0,255,136,0.1);
+    border: 1px solid rgba(0,255,136,0.3);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; color: #00ff88;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  .horaire-row {
+    display: flex; justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0; font-size: 0.95rem;
+  }
+
+  .horaire-row .jour { color: var(--ink-dim); }
+
+  .horaire-row .heures {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink); font-weight: 500;
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 4rem 2rem 2rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    position: relative; z-index: 2;
+  }
+
+  .footer-logo {
+    font-weight: 800; font-size: 2rem;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-logo em { color: var(--neon-red); font-style: italic; }
+
+  .footer-tagline {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink-muted); font-size: 0.8rem;
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .footer-socials {
+    display: flex; justify-content: center; gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-social {
+    width: 44px; height: 44px;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-dim); text-decoration: none;
+    transition: all 0.2s;
+    font-weight: 600; font-size: 0.85rem;
+  }
+
+  .footer-social:hover {
+    background: var(--neon-red); color: var(--ink);
+    border-color: var(--neon-red); transform: translateY(-2px);
+  }
+
+  .footer-copy {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; color: var(--ink-muted);
+    letter-spacing: 1px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .nav { padding: 1rem; }
+    .nav-links { display: none; }
+    .nav-mobile-btn { display: block; }
+
+    .nav-links.active {
+      display: flex;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--bg);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      padding: 1rem; gap: 0.3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero { padding: 100px 1rem 40px; }
+
+    .hero-bottom {
+      grid-template-columns: 1fr;
+      gap: 2rem; align-items: stretch;
+    }
+
+    .ticker { margin: 3rem -1rem 0; font-size: 1.3rem; }
+
+    .stats-section { padding: 3rem 1rem; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .section { padding: 4rem 1rem; }
+    #parfaites, #contact { padding-left: 1rem; padding-right: 1rem; }
+
+    .hof-banner {
+      grid-template-columns: 1fr;
+      padding: 2rem; text-align: center;
+    }
+
+    .hof-count { text-align: center; }
+
+    .parfaites-header { display: none; }
+
+    .parfaites-row {
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem; padding: 1.2rem;
+    }
+
+    .parfaites-row > * { font-size: 0.9rem; }
+
+    .parfaites-rank {
+      grid-column: 1 / 3;
+      color: var(--ink-muted) !important;
+    }
+
+    .parfaites-name { grid-column: 1; }
+    .parfaites-score { grid-column: 2; text-align: right; }
+    .parfaites-ligue { grid-column: 1 / 3; font-size: 0.8rem; }
+    .parfaites-date { display: none; }
+
+    .contact-grid { grid-template-columns: 1fr; }
+
+    .section-top { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 500px) {
+    .hero h1 { font-size: clamp(2.8rem, 14vw, 5rem); }
+    .nav-logo-text { display: none; }
+
+    .hero-actions { flex-direction: column; width: 100%; }
+    .hero-actions .btn { width: 100%; justify-content: center; }
+
+    .tarif-card { padding: 2rem; }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.8s, transform 0.8s;
+  }
+
+  .reveal.in {
+    opacity: 1; transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <img src="logo.jpg" alt="Salon de Quilles Le Domaine">
+      <div class="nav-logo-text">
+        LE DOMAINE
+        <small>quilles · mtl</small>
+      </div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Accueil</a></li>
+      <li><a href="#parfaites">Hall of Fame</a></li>
+      <li><a href="#ligues">Ligues</a></li>
+      <li><a href="#tarifs">Tarifs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="tel:5142558436" class="nav-cta">Réserver →</a>
+    <button class="nav-mobile-btn" onclick="document.getElementById('navLinks').classList.toggle('active')">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="status-bar">
+      <span class="status-dot"></span>
+      OUVERT MAINTENANT · 7 JOURS SUR 7 · 16 ALLÉES
+    </div>
+    <h1>
+      <span class="line-1">Lance.</span>
+      <span class="line-2">Frappe.</span>
+      <span class="line-1">Recommence.</span>
+      <span class="line-3">// Le vrai spot de quilles de Montréal-Est</span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-text">
+        16 allées, une ambiance qui frappe, du monde qui a du fun. Que tu viennes avec ta gang, ton date, ou ta ligue — <strong>ici ça roule fort.</strong>
+      </p>
+      <div class="hero-actions">
+        <a href="tel:5142558436" class="btn btn-neon">
+          Réserver une allée
+          <span>→</span>
+        </a>
+        <a href="#parfaites" class="btn btn-ghost">
+          Hall of Fame 🏆
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ticker-item">
+        LANCE · FRAPPE · RECOMMENCE <span class="ticker-dot"></span>
+        16 ALLÉES <span class="ticker-dot"></span>
+        10 PINS · PETITES QUILLES <span class="ticker-dot"></span>
+        OUVERT 7 JOURS <span class="ticker-dot"></span>
+        MONTRÉAL-EST <span class="ticker-dot"></span>
+        FAIS TON ABAT <span class="ticker-dot"></span>
+      </span>
+      <span class="ticker-item">
+        LANCE · FRAPPE · RECOMMENCE <span class="ticker-dot"></span>
+        16 ALLÉES <span class="ticker-dot"></span>
+        10 PINS · PETITES QUILLES <span class="ticker-dot"></span>
+        OUVERT 7 JOURS <span class="ticker-dot"></span>
+        MONTRÉAL-EST <span class="ticker-dot"></span>
+        FAIS TON ABAT <span class="ticker-dot"></span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="stats-grid reveal">
+    <div class="stat-cell">
+      <div class="stat-label">Allées</div>
+      <div class="stat-num">16</div>
+      <div class="stat-caption">petites quilles</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Format</div>
+      <div class="stat-num">10</div>
+      <div class="stat-caption">pins classiques</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Ouverture</div>
+      <div class="stat-num">19h</div>
+      <div class="stat-caption">par jour en semaine</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Score parfait</div>
+      <div class="stat-num">300</div>
+      <div class="stat-caption">le rêve ultime</div>
+    </div>
+  </div>
+</section>
+
+<!-- PARFAITES -->
+<section id="parfaites">
+  <div id="parfaites-inner">
+    <div class="section-top reveal">
+      <div>
+        <div class="section-label">Le hall of fame</div>
+        <h2 class="section-title">Les <em>légendes</em><br>du salon.</h2>
+      </div>
+      <p class="section-description">
+        Une partie parfaite au 10-pin = 12 strikes de suite. 300 points pile. Un moment que t'oublieras jamais. Voici ceux qui l'ont fait ici.
+      </p>
+    </div>
+
+    <div class="hof-banner reveal">
+      <div>
+        <h3>THE PERFECT GAME</h3>
+        <p>Chaque nom ici représente un moment de pure magie sur nos allées. Strike après strike, jusqu'à la perfection. Big up à nos champions.</p>
+      </div>
+      <div class="hof-count">
+        <div class="hof-count-num" id="heroCount">00</div>
+        <div class="hof-count-label">parties parfaites</div>
+      </div>
+    </div>
+
+    <div class="parfaites-controls">
+      <div class="search-wrap">
+        <input type="text" class="search-input" id="searchInput" placeholder="Chercher un joueur, une ligue, une année...">
+      </div>
+      <div class="count-badge"><strong id="count">0</strong>RÉSULTATS</div>
+    </div>
+
+    <div class="parfaites-list" id="parfaitesList">
+      <div class="parfaites-header">
+        <span>#</span>
+        <span>Joueur</span>
+        <span>Score</span>
+        <span>Ligue</span>
+        <span>Date</span>
+      </div>
+      <div id="parfaitesRows"></div>
+    </div>
+
+    <button class="add-btn" onclick="ajouterPartie()">
+      + Ajouter une partie parfaite
+    </button>
+  </div>
+</section>
+
+<!-- LIGUES -->
+<section class="section" id="ligues">
+  <div class="section-top reveal">
+    <div>
+      <div class="section-label">Rejoins une team</div>
+      <h2 class="section-title">Nos <em>ligues</em>.</h2>
+    </div>
+    <p class="section-description">
+      Débutant ou pro, y'a une place pour toi. Vibes amicales, compétition saine, et du fun à la tonne.
+    </p>
+  </div>
+
+  <div class="ligues-grid reveal">
+    <div class="ligue-card">
+      <div class="ligue-day">// Lundi</div>
+      <div class="ligue-title">À venir</div>
+      <div class="ligue-meta"><span>Heure</span><span>—</span></div>
+      <div class="ligue-meta"><span>Format</span><span>—</span></div>
+      <div class="ligue-meta"><span>Inscription</span><span>Info au salon</span></div>
+    </div>
+    <div class="ligue-card">
+      <div class="ligue-day">// Mardi</div>
+      <div class="ligue-title">À venir</div>
+      <div class="ligue-meta"><span>Heure</span><span>—</span></div>
+      <div class="ligue-meta"><span>Format</span><span>—</span></div>
+      <div class="ligue-meta"><span>Inscription</span><span>Info au salon</span></div>
+    </div>
+    <div class="ligue-card">
+      <div class="ligue-day">// Mercredi</div>
+      <div class="ligue-title">À venir</div>
+      <div class="ligue-meta"><span>Heure</span><span>—</span></div>
+      <div class="ligue-meta"><span>Format</span><span>—</span></div>
+      <div class="ligue-meta"><span>Inscription</span><span>Info au salon</span></div>
+    </div>
+    <div class="ligue-card">
+      <div class="ligue-day">// Jeudi</div>
+      <div class="ligue-title">À venir</div>
+      <div class="ligue-meta"><span>Heure</span><span>—</span></div>
+      <div class="ligue-meta"><span>Format</span><span>—</span></div>
+      <div class="ligue-meta"><span>Inscription</span><span>Info au salon</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section class="section" id="tarifs">
+  <div class="section-top reveal">
+    <div>
+      <div class="section-label">Les prix</div>
+      <h2 class="section-title">C'est <em>combien</em>?</h2>
+    </div>
+    <p class="section-description">
+      Parties libres, anniversaires, 5 à 7 entre chums — on a tout ce qu'il faut pour que tu passes un moment malade.
+    </p>
+  </div>
+
+  <div class="tarifs-grid reveal">
+    <div class="tarif-card">
+      <div class="tarif-emoji">🎳</div>
+      <h3 class="tarif-name">Partie Libre</h3>
+      <p class="tarif-desc">Viens quand tu veux, joue à ton rythme. Parfait en famille ou entre amis.</p>
+      <div class="tarif-price">—$<small>/partie</small></div>
+      <div class="tarif-note">location souliers en sus</div>
+    </div>
+
+    <div class="tarif-card hot">
+      <div class="tarif-badge">Populaire</div>
+      <div class="tarif-emoji">🎂</div>
+      <h3 class="tarif-name">Fête d'ado</h3>
+      <p class="tarif-desc">Un anniv mémorable! Allée privée, animateur, collation. Tout inclus.</p>
+      <div class="tarif-price">—$<small>/personne</small></div>
+      <div class="tarif-note">⚡ forfait tout inclus</div>
+    </div>
+
+    <div class="tarif-card">
+      <div class="tarif-emoji">🍻</div>
+      <h3 class="tarif-name">5 à 7 Corpo</h3>
+      <p class="tarif-desc">Team building stylé. Allées réservées, ambiance garantie. Fais winner ta gang.</p>
+      <div class="tarif-price">—$<small>/personne</small></div>
+      <div class="tarif-note">réservation de groupe</div>
+    </div>
+
+    <div class="tarif-card">
+      <div class="tarif-emoji">🎮</div>
+      <h3 class="tarif-name">Happy Hour</h3>
+      <p class="tarif-desc">Tarifs étudiants & spéciaux certaines soirées. Suis-nous sur les réseaux!</p>
+      <div class="tarif-price">—$<small>/partie</small></div>
+      <div class="tarif-note">certains soirs</div>
+    </div>
+  </div>
+
+  <div class="prix-info">
+    💬 Les tarifs exacts seront affichés ici. <strong>Appelle au 514 255-8436</strong> pour les prix à jour et les réservations de groupe.
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div id="contact-inner">
+    <div class="section-top reveal">
+      <div>
+        <div class="section-label">Viens nous voir</div>
+        <h2 class="section-title">On t'<em>attend</em>.</h2>
+      </div>
+      <p class="section-description">
+        Pogne ta gang, saute dans ton char, et viens rouler avec nous. On est faciles à trouver.
+      </p>
+    </div>
+
+    <div class="contact-grid reveal">
+      <div class="contact-card">
+        <div class="contact-item">
+          <div class="contact-icon-wrap">📍</div>
+          <div class="contact-detail">
+            <div class="contact-label">Adresse</div>
+            <div class="contact-value">
+              3275 av. de Granby<br>
+              Montréal, QC H1N 2Z7<br>
+              <small>Centre Commercial Le Domaine</small>
+            </div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon-wrap">📞</div>
+          <div class="contact-detail">
+            <div class="contact-label">Téléphone</div>
+            <div class="contact-value">
+              <a href="tel:5142558436">514 255-8436</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon-wrap">✉️</div>
+          <div class="contact-detail">
+            <div class="contact-label">Email</div>
+            <div class="contact-value">
+              <a href="mailto:quillesdomaine@videotron.ca">quillesdomaine@videotron.ca</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon-wrap">🗺️</div>
+          <div class="contact-detail">
+            <div class="contact-label">Itinéraire</div>
+            <div class="contact-value">
+              <a href="https://maps.google.com/?q=3275+av+de+Granby+Montreal" target="_blank">Ouvrir Google Maps →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="horaires-card">
+        <div class="horaires-header">
+          <div class="horaires-title">Ouvert.</div>
+          <div class="horaires-status">● LIVE NOW</div>
+        </div>
+        <div class="horaire-row"><span class="jour">Lundi</span><span class="heures">08:00 — 03:00</span></div>
+        <div class="horaire-row"><span class="jour">Mardi</span><span class="heures">08:00 — 03:00</span></div>
+        <div class="horaire-row"><span class="jour">Mercredi</span><span class="heures">08:00 — 03:00</span></div>
+        <div class="horaire-row"><span class="jour">Jeudi</span><span class="heures">08:00 — 03:00</span></div>
+        <div class="horaire-row"><span class="jour">Vendredi</span><span class="heures">08:00 — 03:00</span></div>
+        <div class="horaire-row"><span class="jour">Samedi</span><span class="heures">08:00 — 03:00</span></div>
+        <div class="horaire-row"><span class="jour">Dimanche</span><span class="heures">08:00 — 01:00</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">Bowl · Chill · <em>Repeat</em></div>
+  <div class="footer-tagline">Salon de Quilles Le Domaine · MTL</div>
+  <div class="footer-socials">
+    <a href="#" class="footer-social" title="Facebook">f</a>
+    <a href="#" class="footer-social" title="Instagram">IG</a>
+    <a href="tel:5142558436" class="footer-social" title="Appel">📞</a>
+  </div>
+  <div class="footer-copy">© 2026 · ALL RIGHTS RESERVED</div>
+</footer>
+
+<script>
+  let partiesParfaites = [
+    // AJOUTE TES VRAIES PARTIES PARFAITES ICI
+    // Exemple:
+    // { joueur: "Jean Tremblay", score: 300, ligue: "Ligue du mardi", date: "2024-03-15" },
+  ];
+
+  function afficherParties(filtre = '') {
+    const rowsEl = document.getElementById('parfaitesRows');
+    const countEl = document.getElementById('count');
+    const heroCountEl = document.getElementById('heroCount');
+
+    const liste = partiesParfaites.filter(p => {
+      const texte = (p.joueur + ' ' + (p.ligue || '') + ' ' + (p.date || '')).toLowerCase();
+      return texte.includes(filtre.toLowerCase());
+    });
+
+    liste.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+    heroCountEl.textContent = String(partiesParfaites.length).padStart(2, '0');
+    countEl.textContent = liste.length;
+
+    if (liste.length === 0) {
+      if (partiesParfaites.length === 0) {
+        rowsEl.innerHTML = `
+          <div class="parfaites-empty">
+            <div class="parfaites-empty-icon">🎳</div>
+            <strong>Pas encore de parties parfaites enregistrées.</strong><br>
+            <small>Clique sur le bouton + ci-dessous pour ajouter la première.</small>
+          </div>`;
+      } else {
+        rowsEl.innerHTML = `
+          <div class="parfaites-empty">
+            <strong>Aucun résultat pour "${filtre}"</strong>
+          </div>`;
+      }
+      return;
+    }
+
+    rowsEl.innerHTML = liste.map((p, i) => `
+      <div class="parfaites-row ${i < 3 ? 'top' : ''}">
+        <span class="parfaites-rank">#${String(i + 1).padStart(2, '0')}</span>
+        <span class="parfaites-name">${p.joueur}</span>
+        <span class="parfaites-score">${p.score}</span>
+        <span class="parfaites-ligue">${p.ligue || '—'}</span>
+        <span class="parfaites-date">${formaterDate(p.date)}</span>
+      </div>
+    `).join('');
+  }
+
+  function formaterDate(d) {
+    if (!d) return '—';
+    const date = new Date(d);
+    if (isNaN(date)) return d;
+    const mois = ['jan', 'fév', 'mar', 'avr', 'mai', 'juin', 'juil', 'août', 'sep', 'oct', 'nov', 'déc'];
+    return `${date.getDate()} ${mois[date.getMonth()]} ${date.getFullYear()}`;
+  }
+
+  function ajouterPartie() {
+    const joueur = prompt("Nom du joueur:");
+    if (!joueur) return;
+    const score = prompt("Score:", "300");
+    if (!score) return;
+    const ligue = prompt("Ligue (optionnel):", "");
+    const date = prompt("Date (AAAA-MM-JJ):", new Date().toISOString().split('T')[0]);
+
+    partiesParfaites.push({
+      joueur: joueur,
+      score: parseInt(score) || 300,
+      ligue: ligue || '',
+      date: date || ''
+    });
+
+    afficherParties(document.getElementById('searchInput').value);
+  }
+
+  document.getElementById('searchInput').addEventListener('input', (e) => {
+    afficherParties(e.target.value);
+  });
+
+  afficherParties();
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('active');
+    });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
