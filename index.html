@@ -1142,25 +1142,86 @@
     margin-bottom: 2rem;
   }
 
+  .footer-socials-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; color: var(--ink-muted);
+    text-transform: uppercase; letter-spacing: 3px;
+    margin-bottom: 1.2rem;
+  }
+
   .footer-socials {
-    display: flex; justify-content: center; gap: 0.5rem;
-    margin-bottom: 2rem;
+    display: flex; justify-content: center; gap: 1rem;
+    margin-bottom: 3rem;
   }
 
   .footer-social {
-    width: 44px; height: 44px;
+    width: 52px; height: 52px;
     background: var(--bg-3);
     border: 1px solid var(--border);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     color: var(--ink-dim); text-decoration: none;
-    transition: all 0.2s;
-    font-weight: 600; font-size: 0.85rem;
+    transition: all 0.25s;
   }
 
-  .footer-social:hover {
-    background: var(--neon-red); color: var(--ink);
-    border-color: var(--neon-red); transform: translateY(-2px);
+  .footer-social svg {
+    width: 22px; height: 22px;
+    transition: transform 0.25s;
+  }
+
+  .footer-social:hover svg {
+    transform: scale(1.15);
+  }
+
+  /* Facebook bleu */
+  .footer-social-fb:hover {
+    background: #1877F2;
+    color: #fff;
+    border-color: #1877F2;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(24, 119, 242, 0.4);
+  }
+
+  /* Téléphone rouge */
+  .footer-social-phone:hover {
+    background: var(--neon-red);
+    color: #fff;
+    border-color: var(--neon-red);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--neon-red-glow);
+  }
+
+  /* Courriel jaune */
+  .footer-social-mail:hover {
+    background: var(--neon-yellow);
+    color: var(--bg);
+    border-color: var(--neon-yellow);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 238, 0, 0.3);
+  }
+
+  .footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .footer-address {
+    color: var(--ink-dim);
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-address a {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .footer-address a:hover {
+    color: var(--neon-red);
   }
 
   .footer-copy {
@@ -1748,12 +1809,32 @@
 <footer class="footer">
   <div class="footer-logo">Lance · Frappe · <em>Recommence</em></div>
   <div class="footer-tagline">Salon de Quilles Le Domaine · Montréal</div>
+
+  <div class="footer-socials-label">Suivez-nous</div>
   <div class="footer-socials">
-    <a href="#" class="footer-social" title="Facebook">f</a>
-    <a href="#" class="footer-social" title="Instagram">IG</a>
-    <a href="tel:5142558436" class="footer-social" title="Téléphone">📞</a>
+    <a href="https://www.facebook.com/profile.php?id=100034169635272" target="_blank" rel="noopener" class="footer-social footer-social-fb" title="Notre page Facebook">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+      </svg>
+    </a>
+    <a href="tel:5142558436" class="footer-social footer-social-phone" title="Appelez-nous">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+      </svg>
+    </a>
+    <a href="mailto:quillesdomaine@videotron.ca" class="footer-social footer-social-mail" title="Écrivez-nous">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+      </svg>
+    </a>
   </div>
-  <div class="footer-copy">© 2026 · TOUS DROITS RÉSERVÉS</div>
+
+  <div class="footer-bottom">
+    <div class="footer-address">
+      3275 av. de Granby, Montréal, QC H1N 2Z7 · <a href="tel:5142558436">514 255-8436</a>
+    </div>
+    <div class="footer-copy">© 2026 · Salon de Quilles Le Domaine · Tous droits réservés</div>
+  </div>
 </footer>
 
 <script>
