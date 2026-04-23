@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quilles Le Domaine — Bowl. Chill. Repeat.</title>
-<meta name="description" content="Le salon de quilles le plus hot de Montréal-Est. 16 allées, vibes, parties parfaites. Pogne tes amis, ça joue ici.">
+<title>Salon de Quilles Le Domaine — Lance. Frappe. Recommence.</title>
+<meta name="description" content="Le salon de quilles le plus cool de Montréal-Est. 16 allées de petites quilles, parties parfaites, ligues et bonne ambiance. 3275 av. de Granby.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -348,6 +348,10 @@
     font-size: clamp(3rem, 6vw, 5rem);
     line-height: 1; letter-spacing: -0.04em;
     transition: all 0.3s;
+  }
+
+  .stat-num-small {
+    font-size: clamp(2rem, 4vw, 3.2rem) !important;
   }
 
   .stat-caption {
@@ -706,6 +710,313 @@
 
   .prix-info strong { color: var(--neon-red); }
 
+  /* Sous-titres des sections tarifs */
+  .tarifs-subtitle {
+    margin-bottom: 2rem;
+  }
+
+  .tarifs-subtitle-h {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-top: 0.5rem;
+  }
+
+  /* Prix ajusté pour ne pas être trop gros */
+  .tarif-price {
+    font-weight: 800;
+    font-size: 2.2rem !important;
+    line-height: 1; letter-spacing: -0.04em;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Extras (souliers, info après 10h) */
+  .prix-extras {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .extra-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .extra-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--bg-3);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .extra-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+    color: var(--ink);
+  }
+
+  .extra-detail {
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+  }
+
+  @media (max-width: 700px) {
+    .prix-extras {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Bannière ambiance party pour forfaits fête */
+  .fete-banner {
+    background: linear-gradient(135deg, #8b00ff 0%, #ff006e 50%, #ff2e4c 100%);
+    padding: 2.5rem;
+    border-radius: 24px;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .fete-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.2), transparent 50%);
+    pointer-events: none;
+  }
+
+  .fete-banner::after {
+    content: '🎉';
+    position: absolute;
+    right: 1rem; bottom: 1rem;
+    font-size: 8rem;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  .fete-banner-badges {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .fete-badge {
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    color: var(--ink);
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  .fete-banner-title {
+    font-weight: 800;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    color: var(--ink);
+    position: relative;
+    z-index: 2;
+  }
+
+  .fete-banner-text {
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    color: rgba(255,255,255,0.95);
+    font-size: 1rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .fete-exclu {
+    display: inline-block;
+    background: var(--neon-yellow);
+    color: var(--bg);
+    padding: 0.6rem 1.2rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Liste de ce qui est inclus dans les forfaits fête */
+  .tarif-inclus-list {
+    margin: 1.5rem 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .tarif-card.hot .tarif-inclus-list {
+    border-top-color: rgba(255,255,255,0.2);
+  }
+
+  .tarif-inclus-item {
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+    color: var(--ink-dim);
+  }
+
+  .tarif-card.hot .tarif-inclus-item {
+    color: rgba(255,255,255,0.95);
+  }
+
+  /* Double prix (enfant/adulte) */
+  .tarif-prix-duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .prix-duo-item {
+    background: var(--bg-3);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .tarif-card.hot .prix-duo-item {
+    background: rgba(0,0,0,0.2);
+    border-color: rgba(255,255,255,0.15);
+  }
+
+  .prix-duo-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.4rem;
+  }
+
+  .tarif-card.hot .prix-duo-label {
+    color: rgba(255,255,255,0.7);
+  }
+
+  .prix-duo-val {
+    font-weight: 800;
+    font-size: 1.3rem !important;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .prix-duo-val small {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 400;
+    color: var(--ink-muted);
+    margin-top: 0.2rem;
+    letter-spacing: 1px;
+  }
+
+  .tarif-card.hot .prix-duo-val small {
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* Menu du trio */
+  .trio-menu {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    margin-top: 2rem;
+  }
+
+  .trio-menu-title {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .trio-menu-emoji {
+    width: 60px;
+    height: 60px;
+    background: var(--bg-3);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+
+  .trio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .trio-col-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--neon-red);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--neon-red);
+    display: inline-block;
+  }
+
+  .trio-choices {
+    list-style: none;
+    padding: 0;
+  }
+
+  .trio-choices li {
+    padding: 0.7rem 0;
+    font-size: 0.95rem;
+    color: var(--ink);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .trio-choices li:last-child {
+    border-bottom: none;
+  }
+
+  @media (max-width: 700px) {
+    .trio-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .tarif-prix-duo {
+      grid-template-columns: 1fr;
+    }
+
+    .fete-banner {
+      padding: 2rem 1.5rem;
+    }
+  }
+
   /* CONTACT */
   #contact {
     background: var(--bg-2);
@@ -956,7 +1267,7 @@
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#home">Accueil</a></li>
-      <li><a href="#parfaites">Hall of Fame</a></li>
+      <li><a href="#parfaites">Tableau d'honneur</a></li>
       <li><a href="#ligues">Ligues</a></li>
       <li><a href="#tarifs">Tarifs</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -989,7 +1300,7 @@
           <span>→</span>
         </a>
         <a href="#parfaites" class="btn btn-ghost">
-          Hall of Fame 🏆
+          Tableau d'honneur 🏆
         </a>
       </div>
     </div>
@@ -1031,9 +1342,9 @@
       <div class="stat-caption">pins classiques</div>
     </div>
     <div class="stat-cell">
-      <div class="stat-label">Ouverture</div>
-      <div class="stat-num">19h</div>
-      <div class="stat-caption">par jour en semaine</div>
+      <div class="stat-label">Horaire</div>
+      <div class="stat-num stat-num-small">7 jours</div>
+      <div class="stat-caption">dès 8h du matin</div>
     </div>
     <div class="stat-cell">
       <div class="stat-label">Score parfait</div>
@@ -1048,18 +1359,18 @@
   <div id="parfaites-inner">
     <div class="section-top reveal">
       <div>
-        <div class="section-label">Le hall of fame</div>
+        <div class="section-label">Tableau d'honneur</div>
         <h2 class="section-title">Les <em>légendes</em><br>du salon.</h2>
       </div>
       <p class="section-description">
-        Une partie parfaite au 10-pin = 12 strikes de suite. 300 points pile. Un moment que t'oublieras jamais. Voici ceux qui l'ont fait ici.
+        Une partie parfaite, c'est 12 abats de suite. 300 points pile. Un moment inoubliable. Voici ceux qui l'ont accompli chez nous.
       </p>
     </div>
 
     <div class="hof-banner reveal">
       <div>
-        <h3>THE PERFECT GAME</h3>
-        <p>Chaque nom ici représente un moment de pure magie sur nos allées. Strike après strike, jusqu'à la perfection. Big up à nos champions.</p>
+        <h3>LA PARTIE PARFAITE</h3>
+        <p>Chaque nom ici représente un moment de pure magie sur nos allées. Abat après abat, jusqu'à la perfection. Bravo à nos champions!</p>
       </div>
       <div class="hof-count">
         <div class="hof-count-num" id="heroCount">00</div>
@@ -1105,31 +1416,52 @@
 
   <div class="ligues-grid reveal">
     <div class="ligue-card">
-      <div class="ligue-day">// Lundi</div>
-      <div class="ligue-title">À venir</div>
-      <div class="ligue-meta"><span>Heure</span><span>—</span></div>
-      <div class="ligue-meta"><span>Format</span><span>—</span></div>
+      <div class="ligue-day">// Mardi</div>
+      <div class="ligue-title">Fadoq</div>
+      <div class="ligue-meta"><span>Heure</span><span>10h00</span></div>
+      <div class="ligue-meta"><span>Période</span><span>Matinée</span></div>
       <div class="ligue-meta"><span>Inscription</span><span>Info au salon</span></div>
     </div>
     <div class="ligue-card">
       <div class="ligue-day">// Mardi</div>
-      <div class="ligue-title">À venir</div>
-      <div class="ligue-meta"><span>Heure</span><span>—</span></div>
-      <div class="ligue-meta"><span>Format</span><span>—</span></div>
+      <div class="ligue-title">Gaillards</div>
+      <div class="ligue-meta"><span>Heure</span><span>19h15</span></div>
+      <div class="ligue-meta"><span>Période</span><span>Soirée</span></div>
       <div class="ligue-meta"><span>Inscription</span><span>Info au salon</span></div>
     </div>
     <div class="ligue-card">
       <div class="ligue-day">// Mercredi</div>
-      <div class="ligue-title">À venir</div>
-      <div class="ligue-meta"><span>Heure</span><span>—</span></div>
-      <div class="ligue-meta"><span>Format</span><span>—</span></div>
+      <div class="ligue-title">La Volière</div>
+      <div class="ligue-meta"><span>Heure</span><span>9h30</span></div>
+      <div class="ligue-meta"><span>Période</span><span>Matinée</span></div>
+      <div class="ligue-meta"><span>Inscription</span><span>Info au salon</span></div>
+    </div>
+    <div class="ligue-card">
+      <div class="ligue-day">// Mercredi</div>
+      <div class="ligue-title">St-Donat</div>
+      <div class="ligue-meta"><span>Heure</span><span>13h00</span></div>
+      <div class="ligue-meta"><span>Période</span><span>Après-midi</span></div>
       <div class="ligue-meta"><span>Inscription</span><span>Info au salon</span></div>
     </div>
     <div class="ligue-card">
       <div class="ligue-day">// Jeudi</div>
-      <div class="ligue-title">À venir</div>
-      <div class="ligue-meta"><span>Heure</span><span>—</span></div>
-      <div class="ligue-meta"><span>Format</span><span>—</span></div>
+      <div class="ligue-title">East End Seniors</div>
+      <div class="ligue-meta"><span>Heure</span><span>10h00</span></div>
+      <div class="ligue-meta"><span>Période</span><span>Matinée</span></div>
+      <div class="ligue-meta"><span>Inscription</span><span>Info au salon</span></div>
+    </div>
+    <div class="ligue-card">
+      <div class="ligue-day">// Jeudi</div>
+      <div class="ligue-title">Les Amis Du Jeudi</div>
+      <div class="ligue-meta"><span>Heure</span><span>19h00</span></div>
+      <div class="ligue-meta"><span>Période</span><span>Soirée</span></div>
+      <div class="ligue-meta"><span>Inscription</span><span>Info au salon</span></div>
+    </div>
+    <div class="ligue-card">
+      <div class="ligue-day">// Vendredi</div>
+      <div class="ligue-title">Tour Du Monde</div>
+      <div class="ligue-meta"><span>Heure</span><span>13h00</span></div>
+      <div class="ligue-meta"><span>Période</span><span>Après-midi</span></div>
       <div class="ligue-meta"><span>Inscription</span><span>Info au salon</span></div>
     </div>
   </div>
@@ -1143,47 +1475,200 @@
       <h2 class="section-title">C'est <em>combien</em>?</h2>
     </div>
     <p class="section-description">
-      Parties libres, anniversaires, 5 à 7 entre chums — on a tout ce qu'il faut pour que tu passes un moment malade.
+      Deux façons de jouer : à la partie ou à l'heure. Choisis ce qui marche pour toi et ta gang!
     </p>
+  </div>
+
+  <!-- Sous-titre 1 : Tarifs à l'heure -->
+  <div class="tarifs-subtitle reveal">
+    <div class="section-label">⏱ Tarifs à l'heure</div>
+    <h3 class="tarifs-subtitle-h">Par allée · jusqu'à 6 joueurs</h3>
   </div>
 
   <div class="tarifs-grid reveal">
     <div class="tarif-card">
-      <div class="tarif-emoji">🎳</div>
-      <h3 class="tarif-name">Partie Libre</h3>
-      <p class="tarif-desc">Viens quand tu veux, joue à ton rythme. Parfait en famille ou entre amis.</p>
-      <div class="tarif-price">—$<small>/partie</small></div>
-      <div class="tarif-note">location souliers en sus</div>
+      <div class="tarif-emoji">⏰</div>
+      <h3 class="tarif-name">1 heure</h3>
+      <p class="tarif-desc">Une partie rapide entre amis ou en famille.</p>
+      <div class="tarif-price">34,79 $<small>+ tx / allée</small></div>
+      <div class="tarif-note">jusqu'à 6 personnes</div>
     </div>
 
     <div class="tarif-card hot">
       <div class="tarif-badge">Populaire</div>
-      <div class="tarif-emoji">🎂</div>
-      <h3 class="tarif-name">Fête d'ado</h3>
-      <p class="tarif-desc">Un anniv mémorable! Allée privée, animateur, collation. Tout inclus.</p>
-      <div class="tarif-price">—$<small>/personne</small></div>
-      <div class="tarif-note">⚡ forfait tout inclus</div>
+      <div class="tarif-emoji">⏰⏰</div>
+      <h3 class="tarif-name">2 heures</h3>
+      <p class="tarif-desc">Le sweet spot : assez de temps pour bien s'amuser.</p>
+      <div class="tarif-price">47,84 $<small>+ tx / allée</small></div>
+      <div class="tarif-note">⚡ meilleur rapport qualité-prix</div>
     </div>
 
     <div class="tarif-card">
-      <div class="tarif-emoji">🍻</div>
-      <h3 class="tarif-name">5 à 7 Corpo</h3>
-      <p class="tarif-desc">Team building stylé. Allées réservées, ambiance garantie. Fais winner ta gang.</p>
-      <div class="tarif-price">—$<small>/personne</small></div>
-      <div class="tarif-note">réservation de groupe</div>
+      <div class="tarif-emoji">⏰⏰⏰</div>
+      <h3 class="tarif-name">3 heures</h3>
+      <p class="tarif-desc">Soirée complète. Idéal pour les groupes et les fêtes.</p>
+      <div class="tarif-price">56,53 $<small>+ tx / allée</small></div>
+      <div class="tarif-note">pour les longues soirées</div>
+    </div>
+  </div>
+
+  <!-- Sous-titre 2 : Tarifs à la partie -->
+  <div class="tarifs-subtitle reveal" style="margin-top: 5rem;">
+    <div class="section-label">🎳 Tarifs à la partie</div>
+    <h3 class="tarifs-subtitle-h">Par personne · prix selon l'âge et le moment</h3>
+  </div>
+
+  <div class="tarifs-grid reveal">
+    <div class="tarif-card">
+      <div class="tarif-emoji">🧒</div>
+      <h3 class="tarif-name">Enfants & ados</h3>
+      <p class="tarif-desc">Tous les jours, avant 18h. Parfait après l'école ou en famille.</p>
+      <div class="tarif-price">3,69 $<small>+ tx / partie</small></div>
+      <div class="tarif-note">lundi au dimanche · avant 18h</div>
     </div>
 
     <div class="tarif-card">
-      <div class="tarif-emoji">🎮</div>
-      <h3 class="tarif-name">Happy Hour</h3>
-      <p class="tarif-desc">Tarifs étudiants & spéciaux certaines soirées. Suis-nous sur les réseaux!</p>
-      <div class="tarif-price">—$<small>/partie</small></div>
-      <div class="tarif-note">certains soirs</div>
+      <div class="tarif-emoji">👨</div>
+      <h3 class="tarif-name">Adultes · Semaine</h3>
+      <p class="tarif-desc">Le tarif le plus doux pour les adultes, du lundi au vendredi.</p>
+      <div class="tarif-price">5,22 $<small>+ tx / partie</small></div>
+      <div class="tarif-note">lun-jeu toute la journée · ven avant 18h</div>
+    </div>
+
+    <div class="tarif-card">
+      <div class="tarif-emoji">☀️</div>
+      <h3 class="tarif-name">Adultes · Fin de semaine AM</h3>
+      <p class="tarif-desc">Commence ta fin de semaine du bon pied avec une partie matinale.</p>
+      <div class="tarif-price">6,09 $<small>+ tx / partie</small></div>
+      <div class="tarif-note">sam-dim · 8h à 10h seulement</div>
+    </div>
+  </div>
+
+  <!-- Sous-titre 3 : Forfait Fête -->
+  <div class="tarifs-subtitle reveal" style="margin-top: 5rem;">
+    <div class="section-label">🎂 Forfaits Fête</div>
+    <h3 class="tarifs-subtitle-h">Anniversaires · ambiance party garantie</h3>
+  </div>
+
+  <!-- Bannière ambiance party -->
+  <div class="fete-banner reveal">
+    <div class="fete-banner-badges">
+      <span class="fete-badge">🎵 Musique</span>
+      <span class="fete-badge">💜 Black light</span>
+      <span class="fete-badge">✨ Jeux de lumière</span>
+    </div>
+    <h3 class="fete-banner-title">L'ambiance party est incluse.</h3>
+    <p class="fete-banner-text">
+      On transforme le salon en véritable party zone : musique qui pompe, black lights, jeux de lumière. Une fête d'enfant dont ils vont parler pendant des mois!
+    </p>
+    <div class="fete-exclu">
+      ⭐ <strong>Exclusivité</strong> samedi et dimanche · 11h à 18h
+    </div>
+  </div>
+
+  <!-- Forfaits fête -->
+  <div class="tarifs-grid reveal">
+    <div class="tarif-card">
+      <div class="tarif-emoji">👨‍👩‍👦</div>
+      <h3 class="tarif-name">Petit groupe</h3>
+      <p class="tarif-desc">Pour 3 joueurs et moins. Idéal pour une petite fête intime.</p>
+      <div class="tarif-inclus-list">
+        <div class="tarif-inclus-item">✓ 1 heure de quilles</div>
+        <div class="tarif-inclus-item">✓ Trio inclus (repas + breuvage + collation)</div>
+        <div class="tarif-inclus-item">✓ Ambiance party (lumières + musique)</div>
+      </div>
+      <div class="tarif-prix-duo">
+        <div class="prix-duo-item">
+          <div class="prix-duo-label">Enfant/Ado (17 et -)</div>
+          <div class="prix-duo-val">17,39 $<small>+ tx</small></div>
+        </div>
+        <div class="prix-duo-item">
+          <div class="prix-duo-label">Adulte</div>
+          <div class="prix-duo-val">21,74 $<small>+ tx</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tarif-card hot">
+      <div class="tarif-badge">Recommandé</div>
+      <div class="tarif-emoji">🎉</div>
+      <h3 class="tarif-name">Grand groupe</h3>
+      <p class="tarif-desc">Pour 4 joueurs et plus. Le meilleur deal pour faire la fête!</p>
+      <div class="tarif-inclus-list">
+        <div class="tarif-inclus-item">✓ 2 heures de quilles</div>
+        <div class="tarif-inclus-item">✓ Trio inclus (repas + breuvage + collation)</div>
+        <div class="tarif-inclus-item">✓ Ambiance party (lumières + musique)</div>
+      </div>
+      <div class="tarif-prix-duo">
+        <div class="prix-duo-item">
+          <div class="prix-duo-label">Enfant/Ado (17 et -)</div>
+          <div class="prix-duo-val">17,39 $<small>+ tx</small></div>
+        </div>
+        <div class="prix-duo-item">
+          <div class="prix-duo-label">Adulte</div>
+          <div class="prix-duo-val">21,74 $<small>+ tx</small></div>
+        </div>
+      </div>
+      <div class="tarif-note" style="margin-top: 1rem;">⚡ 2h au même prix · meilleur choix</div>
+    </div>
+  </div>
+
+  <!-- Menu du trio -->
+  <div class="trio-menu reveal">
+    <div class="trio-menu-title">
+      <span class="trio-menu-emoji">🍟</span>
+      <div>
+        <div class="section-label">Le Trio inclus</div>
+        <h3 class="tarifs-subtitle-h">Choisis 1 option par catégorie</h3>
+      </div>
+    </div>
+    <div class="trio-grid">
+      <div class="trio-col">
+        <div class="trio-col-label">1 · Repas</div>
+        <ul class="trio-choices">
+          <li>🌭 2 Hot-Dogs</li>
+          <li>🍗 4 Croquettes de poulet</li>
+          <li>🥨 2 Pogos</li>
+        </ul>
+      </div>
+      <div class="trio-col">
+        <div class="trio-col-label">2 · Breuvage</div>
+        <ul class="trio-choices">
+          <li>🥤 Liqueur</li>
+          <li>🧃 Jus</li>
+          <li>🧊 Petite slush</li>
+        </ul>
+      </div>
+      <div class="trio-col">
+        <div class="trio-col-label">3 · Collation</div>
+        <ul class="trio-choices">
+          <li>🍫 Chocolat</li>
+          <li>🍟 Chips</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Info souliers + après 10h -->
+  <div class="prix-extras reveal">
+    <div class="extra-card">
+      <div class="extra-icon">👟</div>
+      <div>
+        <div class="extra-title">Location de souliers</div>
+        <div class="extra-detail">2,50 $ par personne · peu importe le forfait choisi</div>
+      </div>
+    </div>
+    <div class="extra-card">
+      <div class="extra-icon">🕙</div>
+      <div>
+        <div class="extra-title">Samedi et dimanche après 10h</div>
+        <div class="extra-detail">Tarif à l'heure seulement (voir section ci-dessus)</div>
+      </div>
     </div>
   </div>
 
   <div class="prix-info">
-    💬 Les tarifs exacts seront affichés ici. <strong>Appelle au 514 255-8436</strong> pour les prix à jour et les réservations de groupe.
+    💬 <strong>Pour les réservations de groupe, fêtes d'enfants et événements spéciaux</strong>, appelle au <strong>514 255-8436</strong>. Tous les prix affichés sont avant taxes.
   </div>
 </section>
 
@@ -1225,7 +1710,7 @@
         <div class="contact-item">
           <div class="contact-icon-wrap">✉️</div>
           <div class="contact-detail">
-            <div class="contact-label">Email</div>
+            <div class="contact-label">Courriel</div>
             <div class="contact-value">
               <a href="mailto:quillesdomaine@videotron.ca">quillesdomaine@videotron.ca</a>
             </div>
@@ -1245,7 +1730,7 @@
       <div class="horaires-card">
         <div class="horaires-header">
           <div class="horaires-title">Ouvert.</div>
-          <div class="horaires-status">● LIVE NOW</div>
+          <div class="horaires-status">● OUVERT</div>
         </div>
         <div class="horaire-row"><span class="jour">Lundi</span><span class="heures">08:00 — 03:00</span></div>
         <div class="horaire-row"><span class="jour">Mardi</span><span class="heures">08:00 — 03:00</span></div>
@@ -1261,14 +1746,14 @@
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-logo">Bowl · Chill · <em>Repeat</em></div>
-  <div class="footer-tagline">Salon de Quilles Le Domaine · MTL</div>
+  <div class="footer-logo">Lance · Frappe · <em>Recommence</em></div>
+  <div class="footer-tagline">Salon de Quilles Le Domaine · Montréal</div>
   <div class="footer-socials">
     <a href="#" class="footer-social" title="Facebook">f</a>
     <a href="#" class="footer-social" title="Instagram">IG</a>
-    <a href="tel:5142558436" class="footer-social" title="Appel">📞</a>
+    <a href="tel:5142558436" class="footer-social" title="Téléphone">📞</a>
   </div>
-  <div class="footer-copy">© 2026 · ALL RIGHTS RESERVED</div>
+  <div class="footer-copy">© 2026 · TOUS DROITS RÉSERVÉS</div>
 </footer>
 
 <script>
@@ -1369,4 +1854,8 @@
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+
+</body>
+</html>
+
 
